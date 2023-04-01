@@ -1,0 +1,200 @@
+{% extends 'test.html'%}
+
+{% load static %}
+{% static "images" as baseUrl %}
+
+{% block search %}
+{% endblock search %}
+
+{% block content %}
+
+<!-- manage section start  -->
+<div class="container">
+  <div class="row mt-5 justify-content-between ">
+    <div class="container">
+      <h1 class="h1 center_text">Manage Products</h1>
+    </div>
+
+      <div class="col-12 my-3 mx-auto">
+          <form action="#">
+            <div class="text-center">
+              <input type="text" class="NB search_bar border-2 p-2" placeholder="search here">
+              <button class="BG  p-2"  type="submit"><i class="fa fa-search"></i></button>
+            </div>
+        </form>
+      </div>
+  </div>
+  <div >
+    <hr>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Catagorie</th>
+          <th scope="col">Image</th>
+          <th scope="col">Name</th>
+          <th scope="col">User Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Disable</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        {% for dest in dests  %}
+        <tr>
+          <th scope="row">{{dest.id}}</th>
+          <td class="text-capitalize">{{dest.catagory}}</td>
+          <td><a href="view_product/{{dest.id}}&{{dest.catagory}}"><img src="{{dest.img.url}}" class="manage_img" alt="img"></a></td>
+          <td>{{dest.name}}</td>
+          <td>{{dest.username}}</td>
+          <td>{{dest.price}}</td>
+          <td>{{dest.disable}}</td>
+          <td>
+            <a href="edit/{{ dest.id }}&{{ dest.catagory }}"><button class="btn action_btn me-2">Edit</button></a>
+            <a href="delete/{{ dest.id }}&{{ dest.catagory }}"><button class="btn action_btn">Delete</button></a>
+          </td>
+        </tr>
+        {% endfor %}
+        
+        
+        {% for c in car %}
+        <tr>
+          <th scope="row">{{c.id}}</th>
+          <td class="text-capitalize">{{c.catagory}}</td>
+          <td><a href="view_product/{{c.id}}&{{c.catagory}}"><img src="{{c.img.url}}" class="manage_img" alt="img"></a></td>
+          <td>{{c.name}}</td>
+          <td>{{c.username}}</td>
+          <td>{{c.price}}</td>
+          <td>{{c.disable}}</td>
+          <td>
+            <a href="edit/{{ c.id }}&{{ c.catagory }}"><button class="btn action_btn me-2">Edit</button></a>
+            <a href="delete/{{ c.id }}&{{ c.catagory }}"><button class="btn action_btn">Delete</button></a>
+          </td>
+        </tr>
+        {% endfor %}
+
+        {% for m in mobile %}
+        <tr>
+          <th scope="row">{{m.id}}</th>
+          <td class="text-capitalize">{{m.catagory}}</td>
+          <td><a href="view_product/{{m.id}}&{{m.catagory}}"><img src="{{m.img.url}}" class="manage_img" alt="img"></a></td>
+          <td>{{m.name}}</td>
+          <td>{{m.username}}</td>
+          <td>{{m.price}}</td>
+          <td>{{m.disable}}</td>
+          <td>
+            <a href="edit/{{ m.id }}&{{ m.catagory }}"><button class="btn action_btn me-2">Edit</button></a>
+            <a href="delete/{{ m.id }}&{{ m.catagory }}"><button class="btn action_btn">Delete</button></a>
+          </td>
+        </tr>
+        {% endfor %}
+
+        {% for l in laptop %}
+        <tr>
+          <th scope="row">{{l.id}}</th>
+          <td class="text-capitalize">{{l.catagory}}</td>
+          <td><a href="view_product/{{l.id}}&{{l.catagory}}"><img src="{{l.img.url}}" class="manage_img" alt="img"></a></td>
+          <td>{{l.name}}</td>
+          <td>{{l.username}}</td>
+          <td>{{l.price}}</td>
+          <td>{{l.disable}}</td>
+          <td>
+            <a href="edit/{{ l.id }}&{{ l.catagory }}"><button class="btn action_btn me-2">Edit</button></a>
+            <a href="delete/{{ l.id }}&{{ l.catagory }}"><button class="btn action_btn">Delete</button></a>
+          </td>
+        </tr>
+        {% endfor %}
+
+        
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- manage section End  -->
+
+
+<div>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center"> 
+    
+      {% if page_obj.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page=1" >&laquo; First</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a>
+      </li>
+      {% endif %}
+    
+      {% if page_obj.number|add:'-2' >= 1 %}  <!-- new -->
+      <li class="page-item">
+        <a class="page-link" href="?page=1">1</a>
+      </li>
+      {% if page_obj.number > 3 %}
+      <li class="page-item">
+        <a class="page-link disabled" href="?page={{page_obj.number|add:'-2'}}">&hellip;</a>
+      </li>
+      {% endif %}
+      {% endif %}
+    
+
+      
+      {% for i in page_obj.paginator.page_range %}
+      {% if i > page_obj.number|add:'-2' and i < page_obj.number|add:'2' %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+      </li>
+      {% endif %}
+      {% endfor %}
+
+      
+      {% if page_obj.paginator.num_pages >= page_obj.number|add:'2' %}
+      {% if page_obj.paginator.num_pages > page_obj.number|add:'2' %}
+      <li class="page-item">
+        <a class="page-link " href="#">&hellip;</a>
+      </li>
+      {% endif %}
+      <!-- <li class="page-item">
+        <a class="page-link" href="?page={{ i }}">{{ i }}hh</a>
+      </li> -->
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+      </li>
+      {% endif %}
+
+      <!-- <li class="page-item disabled">
+        <a class="page-link" href="#">
+          {{ page_obj.number }}
+        </a>
+      </li> -->
+
+      <!-- {% for i in nums %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{forloop.counter}}">{{ forloop.counter }}</a>
+      </li>
+      
+
+      {% endfor %} -->
+
+    
+      {% if page_obj.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{page_obj.paginator.num_pages}}">Last &raquo;</a>
+      </li>
+      
+      {% endif %}
+    
+  
+    </ul>
+  </nav>
+</div>
+</div>
+</div>
+
+
+
+{% endblock content %}

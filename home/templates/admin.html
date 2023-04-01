@@ -1,0 +1,80 @@
+{% extends 'test.html'%}
+
+{% load static %}
+{% static "images" as baseUrl %}
+
+{% block search %}
+{% endblock search %}
+
+{% block content %}
+
+
+
+
+<!-- login section start  -->
+<!-- <div class="container mt-4">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-12 col-md-4 col-lg-4 border ">
+            <div class="text-center p-3">
+                <h1 class="h1">Admin Login</h1>
+                <hr>
+            </div>
+            
+            <form action="{% url 'adminlogin' %}" method="post">
+              {% csrf_token %}
+              <div class="mb-3">
+                  <label for="Email" class="form-label">Email address</label>
+                  <input type="text" class="form-control" placeholder="Enter User Name" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <div id="emailHelp" class="form-text fst-italic">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="Password" class="form-label">Password</label>
+                  <input type="password" class="form-control" placeholder="Enter Password" id="exampleInputPassword1">
+                </div>
+                <div class="row justify-content-center mb-3">
+                    <div class="col-12">
+                      <button class="btn cb1 my-3">LOGIN</button>
+                    </div>   
+                </div>
+              </form>
+        </div>
+    </div>
+</div> -->
+<!-- login section End  -->
+
+<div class="container">
+  <!-- LOGIN section start -->
+  <div class="row l1">
+      <div class="col-lg-4 col-md-6 col-10 border p-3">
+          <h1 class="l2">ADMIN LOGIN</h1>
+          <hr class="mx-auto" width="80%">
+          <form action="adminlogin" method="post">
+            {% csrf_token %}
+            <div>
+              <label for="username" class="form-label my-3">YOUR User Name</label>
+              <input required type="text" name="username" class="form-control cft1" placeholder="Enter Your username" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            
+              <div>
+                <label for="password" name="password" class="form-label my-3">YOUR PASSWORD</label>
+                <input required type="password" name="password" class="form-control cft1" placeholder="Enter Your Password" id="exampleInputPassword1">
+              </div>
+
+            
+            <div class="d-flex justify-content-between">
+              <div class="col3"> 
+                  <button class="btn cb1 my-3">LOGIN</button>
+              </div>
+              <div class="col-7 mt-4">
+                  <a href="{% url 'signup' %}" class="l3">don't have an account?</a>
+              </div>
+            </div>
+          </form>
+      </div>
+  </div>
+  <!-- LOGIN section end -->
+</div>
+
+
+
+{% endblock content %}

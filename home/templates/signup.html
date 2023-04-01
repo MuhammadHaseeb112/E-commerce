@@ -1,0 +1,68 @@
+{% extends 'test.html'%}
+
+{% load static %}
+{% static "images" as baseUrl %}
+
+{% block search %}
+{% endblock search %}
+
+{% block content %}
+
+<div class="container">
+
+        <!-- SIGNUP section start -->
+        <div class="row l1 mb-5">
+            <div class="col-lg-6 col-md-8 col-10 border p-3">
+                <h1 class="l2">REGISTRATION FORM</h1>
+                <hr class="mx-auto" width="80%">
+                
+                <form action="{% url 'signup' %}" method="POST">
+                  {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                            <label for="First_Name" class="form-lable my-3">First Name</label>
+                            <input required type="text" name="first_name" class="form-control cft1" placeholder="Entar First Name">
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <label for="Last_Name" class="form-lable my-3">Last Name</label>
+                            <input required type="text" name="last_name" class="form-control cft1" placeholder="Entar Last Name">
+                        </div>
+                    </div>
+                    <div>
+                      <label for="username" class="form-label my-3">User Name</label>
+                      <input required type="text" name="username" class="form-control cft1" placeholder="Enter Your User Name" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <div id="emailHelp" class="form-text">User Name Must Be Unique</div>
+                    </div>
+                    <div>
+                      <label for="Email" class="form-label my-3">EMAIL ADDRESS<span class="red">*</span></label>
+                      <input required type="email" name="email" class="form-control cft1" placeholder="Enter Your Email Address" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <div id="emailHelp" class="form-text red ">We'll never share your email with anyone else.</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                            <label for="password1" class="form-label my-3">Password</label>
+                            <input required type="password" name="password1" class="form-control cft1" placeholder="Password">
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <label for="password2" class="form-label my-3">Confirm Password</label>
+                            <input required type="password" name="password2" class="form-control cft1" placeholder="Confirm Password">
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <div class="col3"> 
+                          <button class="btn cb1 my-3" >REGISTER</button>
+                      </div>
+                      <div class="col-7 mt-4">
+                          <a href="{% url 'login' %}" class="l3">Already have an account?</a>
+                      </div>
+                    </div>
+                  </form>
+                  
+                  
+            </div>
+        </div>
+        <!-- SIGNUP section end -->
+
+    </div>
+
+        {% endblock content %}

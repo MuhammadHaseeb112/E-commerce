@@ -1,0 +1,304 @@
+{% extends 'test.html'%}
+
+{% load static %}
+{% static "images" as baseUrl %}
+
+{% block search %}
+{% endblock search %}
+
+{% block content %}
+
+
+
+
+        <!-- Add product section start -->
+        
+        <div class="container mt-5">
+            <div>
+              <h3 class="add-h3">Chouse Your Catagorie</h3> 
+              <div class="row ">
+                <div class="col-12 col-md-6 col-lg-3">
+                  <div >
+                    <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop1"> 
+                      <img src="{% static 'img\bikes\Bike.jpg' %}" class="card-img-top add-catagories" alt="img">
+                      <div class="card-body text-center">
+                      <h5 class="add-title">Bikes</h5>
+                    </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                  <div >
+                    <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"> 
+                      <img src="{% static 'img\cars\Cars.jpg' %}" class="card-img-top add-catagories" alt="img">
+                      <div class="card-body text-center">
+                      <h5 class="add-title">Cars</h5>
+                    </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                  <div >
+                    <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop3"> 
+                      <img src="{% static 'img\laptops\Laptops.jpg' %}" class="card-img-top add-catagories" alt="img">
+                      <div class="card-body text-center">
+                      <h5 class="add-title">Laptops</h5>
+                    </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                  <div >
+                    <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop4"> 
+                      <img src="{% static 'img\mobiles\mobiles.jpg' %}" class="card-img-top add-catagories" alt="img">
+                      <div class="card-body text-center">
+                      <h5 class="add-title">Mobiles</h5>
+                    </div>
+                    </a>
+                  </div>
+                </div>
+             
+              </div>
+            </div>
+          </div>
+
+        <!-- Add product section end -->
+
+<!-- Modal1 for bikes  start -->
+<div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Enter Bike Detailes</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" action="{% url 'add_product' %}" enctype = "multipart/form-data">
+            {% csrf_token %}
+            
+            
+            
+            <div>
+              <input type="hidden" name="username" value="{{user.username}}">
+            </div>
+
+            <div class="mb-3">
+              <label for="Name" class="form-label">Name</label>
+              <input required type="text" name="name" class="form-control" placeholder="Enter Name">
+            </div>
+            <div class="mb-3">
+              <label for="Name" class="form-label">Model</label>
+              <input required type="text" name="model" class="form-control" placeholder="Enter model">
+            </div>
+            <div class="form-check form-check-inline">
+              <input required class="form-check-input" type="radio" name="new" id="inlineRadio1" value="True">
+              <label class="form-check-label" for="inlineRadio1">New</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input required class="form-check-input" type="radio" name="new" id="inlineRadio1" value="False">
+              <label class="form-check-label" for="inlineRadio1">Used</label>
+            </div>
+            <div class="mb-3">
+              <label for="BikeModal" class="form-label mt-2">City</label>
+              <input required type="text" name="city" class="form-control" placeholder="Enter city">
+            </div>
+            <div class="mb-3">
+              <label for="CarCity" class="form-label">Price</label>
+              <input required type="number" name="price" class="form-control" placeholder="Enter Price in RS">
+            </div>
+            <label for="BikeModal" class="form-label">Discription</label>
+            <div class="form-floating">
+              <textarea required name="discription"  class="form-control"  placeholder="Enter more Detailes" cols="60" rows="8"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="formFile" class="form-label">Choose File</label>
+              <input required class="form-control" name="img" type="file" id="formFile" >
+              
+            </div>
+  
+            <div class="mt-2">
+              <button type="submit" class="btn add-btn">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- modal1 for bikes end -->
+
+<!-- Modal2 for Cars start-->
+<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Enter Car Detailes</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" action="{% url 'add_productcars' %}" enctype = "multipart/form-data">
+            {% csrf_token %}
+            <div>
+              <input type="hidden" name="username" value="{{user.username}}">
+            </div>
+
+            <div class="mb-3">
+              <label for="Name" class="form-label">Name</label>
+              <input required type="text" name="name" class="form-control" placeholder="Enter Name">
+            </div>
+            <div class="mb-3">
+              <label for="carModal" class="form-label">Modal</label>
+              <input required type="text" name="model" class="form-control" placeholder="Enter Modal">
+            </div>
+            <div class="form-check form-check-inline">
+              <input required class="form-check-input" name="new"  type="radio" name="inlineRadioOptions" id="inlineRadio1" value="True">
+              <label class="form-check-label" for="inlineRadio1">New</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input required class="form-check-input" name="new" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="False">
+              <label class="form-check-label" for="inlineRadio2">Used</label>
+            </div>
+            <div class="mb-3">
+              <label for="CarCity" class="form-label mt-2">City</label>
+              <input required type="text" name="city" class="form-control" placeholder="Enter City">
+            </div>
+            <div class="mb-3">
+              <label for="CarCity" class="form-label">Price</label>
+              <input required type="number" name="price" class="form-control" placeholder="Enter Price in RS">
+            </div>
+            <label for="CarDiscription" class="form-label">Discription</label>
+            <div class="form-floating">
+              <textarea required name="discription" id="" class="form-control"  placeholder="Enter more Detailes" cols="60" rows="8"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="formFile" class="form-label">Choose File</label>
+              <input required class="form-control" name="img" type="file" id="formFile">
+            </div>
+  
+            <div class="mt-2">
+              <button type="submit" class="btn add-btn">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- modal2 for cars end -->
+
+<!-- Modal3 for Laptops start-->
+<div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Enter Laptop Detailes</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" action="{% url 'add_productlaptops' %}" enctype = "multipart/form-data">
+            {% csrf_token %}
+            <div>
+              <input type="hidden" name="username" value="{{user.username}}">
+            </div>
+
+            <div class="mb-3">
+              <label for="Name" class="form-label">Name</label>
+              <input required type="text" name="name" class="form-control" placeholder="Enter Name">
+            </div>
+            <div class="mb-3">
+              <label for="LaptopModal" class="form-label">Modal</label>
+              <input required type="text" name="model" class="form-control" placeholder="Enter Modal">
+            </div>
+            <div class="form-check form-check-inline">
+              <input required class="form-check-input" name="new" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="True">
+              <label class="form-check-label" for="inlineRadio1">New</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input required class="form-check-input" name="new" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="False">
+              <label class="form-check-label" for="inlineRadio2">Used</label>
+            </div>
+            <div class="mb-3">
+              <label for="LaptopModal" class="form-label mt-2">City</label>
+              <input required type="text" class="form-control" name="city" placeholder="Enter City">
+            </div>
+            <div class="mb-3">
+              <label for="CarCity" class="form-label">Price</label>
+              <input required type="number" class="form-control" name="price" placeholder="Enter Price in RS">
+            </div>
+            <label for="LaptopDisctiption" class="form-label">Discription</label>
+            <div class="form-floating">
+              <textarea required name="discription" id="" class="form-control"  placeholder="Enter more Detailes" cols="60" rows="8"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="formFile" class="form-label">Choose File</label>
+              <input required class="form-control" name="img" type="file" id="formFile">
+            </div>
+  
+            <div class="mt-2">
+              <button type="submit" class="btn add-btn">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- modal3 for laptops end -->
+
+<!-- Modal4 for Mobiles start-->
+<div class="modal fade" id="staticBackdrop4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Enter Mobile Detailes</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" action="{% url 'add_productmobiles' %}" enctype = "multipart/form-data">
+            {% csrf_token %}
+            <div>
+              <input type="hidden" name="username" value="{{user.username}}">
+            </div>
+
+            <div class="mb-3">
+              <label for="Name" class="form-label">Name</label>
+              <input required type="text" name="name" class="form-control" placeholder="Enter Name">
+            </div>
+            <div class="mb-3">
+              <label required for="MobileModal" class="form-label">Modal</label>
+              <input required type="text" name="model" class="form-control" placeholder="Enter Modal">
+            </div>
+            <div class="form-check form-check-inline">
+              <input required class="form-check-input" name="new" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="True">
+              <label class="form-check-label" for="inlineRadio1">New</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" name="new" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="False">
+              <label class="form-check-label" for="inlineRadio2">Used</label>
+            </div>
+            <div class="mb-3">
+              <label for="City" class="form-label mt-2">City</label>
+              <input required type="text" name="city" class="form-control" placeholder="Enter City">
+            </div>
+            <div class="mb-3">
+              <label for="CarCity" class="form-label">Price</label>
+              <input required type="number" name="price" class="form-control" placeholder="Enter Price in RS">
+            </div>
+            <label for="Mobilediscription" class="form-label">Discription</label>
+            <div class="form-floating">
+              <textarea name="discription" required class="form-control"  placeholder="Enter more Detailes" cols="60" rows="8"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="formFile" class="form-label">Choose File</label>
+              <input required class="form-control" name="img" type="file" id="formFile">
+            </div>
+  
+            <div class="mt-2">
+              <button type="submit" class="btn add-btn">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- Modal4 for Mobiles end -->
+
+
+{% endblock content %}

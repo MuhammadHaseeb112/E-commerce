@@ -1,0 +1,103 @@
+{% extends 'test.html'%}
+
+{% load static %}
+{% static "images" as baseUrl %}
+
+{% block search %}
+{% endblock search %}
+
+{% block content %}
+
+
+
+<div class="container">
+    <div class="row center">
+        <div class="col-12 col-md-10 ">
+            <form class="border border-2 shadow-lg" action="/update/{{ bike.id }}&{{ bike.catagory }}" method="post" enctype = "multipart/form-data">
+                {% csrf_token %}
+                <div class="row p-2">
+                    <div class="col-3 center_text ">
+                        <input name="id" hidden required value="{{ bike.id }}">
+                        <input name="username" hidden  required value="{{ bike.username }}">
+                        <label for="Name" class="form-label edit-label">Product Name</label>
+                    </div>
+                    <div class="col-9">
+                        <input name="name" class="form-control" required value="{{ bike.name }}">
+                    </div>
+                </div>
+                <div class="row p-2">
+                    <div class="col-3 center_text ">
+                        <label for="model" class="form-label edit-label">Product Model</label>
+                    </div>
+                    <div class="col-9">
+                        <input name="model" class="form-control" required value="{{ bike.model }}">
+                    </div>
+                </div>
+                <div class="row p-2">
+                    <div class="col-3 center_text ">
+                        <label for="model" class="form-label edit-label">Condition</label>
+                    </div>
+                    <div class="col-9 mt-3">
+                        <input class="form-check-input" type="radio" name="new" id="inlineRadio1" value="True">
+                        <label class="form-check-label" for="inlineRadio1">New</label>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input class="form-check-input" type="radio" name="new" id="inlineRadio1" value="False">
+                        <label class="form-check-label" for="inlineRadio1">Used</label>
+                    </div>
+                </div>
+                <div class="row p-2">
+                    <div class="col-3 center_text ">
+                        <label for="City" class="form-label edit-label">City Name</label>
+                    </div>
+                    <div class="col-9">
+                        <input name="city" class="form-control" required value="{{ bike.city }}">
+                    </div>
+                </div>
+                <div class="row p-2">
+                    <div class="col-3 center_text ">
+                        <label for="price" class="form-label edit-label">Product Price</label>
+                    </div>
+                    <div class="col-9">
+                        <input name="price" class="form-control" required value="{{ bike.price }}">
+                    </div>
+                </div>
+                <div class="row p-2">
+                    <div class="col-3 center_text ">
+                        <label for="Name" class="form-label edit-label">Product Images</label>
+                    </div>
+                    <div class="col-9">
+                        <div class="row">
+                            <div class="col-12">
+                                <img src="{{bike.img.url}}" class="manage_img1" alt="img">
+                            </div>
+                            <div class="col-12">
+                                <input class="form-control p1" id="image_input" name="img" type="file" id="formFile" accept="image/*" onchange="getImagePreview(event)">
+                                <div id="preview"></div>
+                            </div>
+                            <div class="col-12 upload-btn">
+                                <label for="image_input" class="p1" ><i class="fa-sharp fa-solid fa-upload"></i> Upload</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row p-2">
+                    <div class="col-3 center_text ">
+                        <label for="discription" class="form-label edit-label">Product Discription</label>
+                    </div>
+                    <div class="col-9">
+                        <textarea required name="discription"  class="form-control"  placeholder="Enter more Detailes" cols="60" rows="12" ">{{ bike.discription }}</textarea>
+                    </div>
+                </div>
+                <div class="row p-2">
+                    <div class="col-12 center_text">
+                        <button type="submit" class="btn update-btn"><i class="fa-solid fa-file-arrow-up"></i> UPDATE</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

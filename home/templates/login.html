@@ -1,0 +1,53 @@
+{% extends 'test.html'%}
+
+{% load static %}
+{% static "images" as baseUrl %}
+
+{% block search %}
+{% endblock search %}
+
+{% block content %}
+
+
+
+<div class="container">
+        <!-- LOGIN section start -->
+        <div class="row l1">
+            <div class="col-lg-4 col-md-6 col-10 border p-3">
+                <h1 class="l2">LOGIN FORM</h1>
+                <hr class="mx-auto" width="80%">
+                <form action="login" method="post">
+                  {% csrf_token %}
+                  <div>
+                    <label for="username" class="form-label my-3">YOUR User Name</label>
+                    <input required type="text" name="username" class="form-control cft1" placeholder="Enter Your username" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                  
+                    <div>
+                      <label for="password" name="password" class="form-label my-3">YOUR PASSWORD</label>
+                      <input required type="password" name="password" class="form-control cft1" placeholder="Enter Your Password" id="exampleInputPassword1">
+                    </div>
+
+                  
+                  <div class="d-flex justify-content-between">
+                    <div class="col3"> 
+                        <button class="btn cb1 my-3">LOGIN</button>
+                    </div>
+                    <div class="col-7 mt-4">
+                        <a href="{% url 'signup' %}" class="l3">don't have an account?</a>
+                    </div>
+                  </div>
+                </form>
+            </div>
+        </div>
+        <!-- LOGIN section end -->
+      </div>
+
+        
+        {% endblock content %}
+
+        {% block content1 %}
+        <li>
+          <a href="{% url 'admin' %}"><button class="btn admin">ADMIN LOGIN</button></a>
+        </li>
+        {% endblock content1 %}

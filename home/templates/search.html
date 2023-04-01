@@ -1,0 +1,109 @@
+{% extends 'test.html'%}
+{% load static %}
+{% static "images" as baseUrl %}
+
+
+{% block content %}
+
+<div class="container my-5">
+    <div class="row">
+
+  <!-- card1 start -->
+  {% for mob in bike %}
+
+  
+<div class="col-lg-3 col-md-6 col-12">
+
+  <div class="carousel-cell">
+    <a href="view_product/{{mob.id}}&{{mob.catagory}}">
+    <div class="card card1">
+      <img src="{{mob.img.url}}" class="card-img-top p-3 card2" alt="...">
+      <div class="card-body">
+        <h5 class="card-title hd_card_title text-primary"><a href="#">{{mob.name}}</a></h5>
+        <p class="card-text my-2">RS {{mob.price}}</p>
+        <span> <a href="view_product/{{mob.id}}&{{mob.catagory}}" class="btn b1 hd_card_button ">View More</a> </span>
+      </div>
+    </div>
+    </a>
+  </div>
+
+</div>
+
+  {% endfor %}
+  <!-- card1 End -->
+    <!-- card1 start -->
+    {% for mob in car %}
+
+  
+    <div class="col-lg-3 col-md-6 col-12">
+    
+      <div class="carousel-cell">
+        <a href="view_product/{{mob.id}}&{{mob.catagory}}">
+        <div class="card card1">
+          <img src="{{mob.img.url}}" class="card-img-top p-3 card2" alt="...">
+          <div class="card-body">
+            <h5 class="card-title hd_card_title text-primary"><a href="#">{{mob.name}}</a></h5>
+            <p class="card-text my-2">RS {{mob.price}}</p>
+            <span> <a href="view_product/{{mob.id}}&{{mob.catagory}}" class="btn b1 hd_card_button ">View More</a> </span>
+          </div>
+        </div>
+        </a>
+      </div>
+    
+    </div>
+    
+      {% endfor %}
+      <!-- card1 End -->
+        <!-- card1 start -->
+  {% for mob in laptop %}
+
+  
+  <div class="col-lg-3 col-md-6 col-12">
+  
+    <div class="carousel-cell">
+      <a href="view_product/{{mob.id}}&{{mob.catagory}}">
+      <div class="card card1">
+        <img src="{{mob.img.url}}" class="card-img-top p-3 card2" alt="...">
+        <div class="card-body">
+          <h5 class="card-title hd_card_title text-primary"><a href="#">{{mob.name}}</a></h5>
+          <p class="card-text my-2">RS {{mob.price}}</p>
+          <span> <a href="view_product/{{mob.id}}&{{mob.catagory}}" class="btn b1 hd_card_button ">View More</a> </span>
+        </div>
+      </div>
+      </a>
+    </div>
+  
+  </div>
+  
+    {% endfor %}
+    <!-- card1 End -->
+      <!-- card1 start -->
+  {% for mob in mobile %}
+
+  
+  <div class="col-lg-3 col-md-6 col-12">
+  
+    <div class="carousel-cell">
+      <a href="view_product/{{mob.id}}&{{mob.catagory}}">
+      <div class="card card1">
+        <img src="{{mob.img.url}}" class="card-img-top p-3 card2" alt="...">
+        <div class="card-body">
+          <h5 class="card-title hd_card_title text-primary"><a href="#">{{mob.name}}</a></h5>
+          <p class="card-text my-2">RS {{mob.price}}</p>
+          <span> <a href="view_product/{{mob.id}}&{{mob.catagory}}" class="btn b1 hd_card_button ">View More</a> </span>
+        </div>
+      </div>
+      </a>
+    </div>
+  
+  </div>
+  
+    {% endfor %}
+    <!-- card1 End -->
+
+</div>
+</div>
+</div>
+
+
+{% endblock content %}

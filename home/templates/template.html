@@ -1,0 +1,921 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Home</title>
+        <!-- bootstrap cdn -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        <!-- tailwindcss cdn -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <!-- Font Awesome Stars-->
+        <link rel="stylesheet" href="css/fontawesome-stars.css">
+        <!-- Font awesome Pro link -->
+        <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.0.0/css/all.css">
+        <!-- css link -->
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <!-- Js link -->
+        <link rel="stylesheet" href="{% static 'min.js' %}">
+        <!-- flickity CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    </head>
+    <body>
+        <!-- Brand Section start -->
+        <div class="container">
+            <div class="row p-3">
+                <div class="col-lg-3 my-3">
+                    <h1 class="font-bold text-3xl">Make It Easy</h1>       
+                </div>
+                <div class="col-lg-9 my-3">
+                    <form action="#">
+                        <input type="text" class="NB w-75 border-2 p-2" placeholder="Enter your search key ...">
+                        <button class="BG w-[50px] border-2 ml-[-6px] p-2"  type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Brand Section End -->
+        <!-- Navbar section start Authenticated-->
+        <div class="BG_nav my-2 h5">
+          <div class="container ">
+              <div class="row">
+                <div class="col-lg-12 ">
+                  <nav class="navbar navbar-expand-lg">
+                    <div class="container-fluid">
+                      <a class="navbar-brand text-sm font-bold" href="{% url 'home' %}">MAKE IT EASY</a>
+                      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                      </button>
+                      <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                        <ul class="navbar-nav ">
+                          <li class="nav-item ">
+                            <a class="nav-link active text-sm font-normal hover:font-bold"  href="{% url 'home' %}">HOME</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link active text-sm font-normal hover:font-bold" href="{% url 'contactus' %}">CONTACT US</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link active text-sm font-normal hover:font-bold" href="{% url 'aboutus' %}">ABOUT US</a>
+                          </li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link active dropdown-toggle text-sm font-normal hover:font-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              CATAGORIES
+                            </a>
+                            <ul class="dropdown-menu BG_nav">
+                              <li><a class="dropdown-item text-sm font-normal hover:font-bold" href="#">BIKES</a></li>
+                              <li><a class="dropdown-item text-sm font-normal hover:font-bold" href="#">CARS</a></li>
+                              <li><a class="dropdown-item text-sm font-normal hover:font-bold" href="#">LAPTOPS</a></li>
+                              <li><a class="dropdown-item text-sm font-normal hover:font-bold" href="#">MOBILES</a></li>
+                            </ul>
+                          </li>
+
+
+                          {% if user.is_authenticated %}
+                          <li class="nav-item dropdown">
+                            <a class="nav-link active dropdown-toggle text-sm font-normal hover:font-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              PRODUCTS
+                            </a>
+                            <ul class="dropdown-menu BG_nav">
+                              <li><a class="dropdown-item text-sm font-normal hover:font-bold" href="{% url 'add_product' %}">ADD PRODUCTS</a></li>
+                              <li><a class="dropdown-item text-sm font-normal hover:font-bold" href="{% url 'manage_product' %}">MANAGE PRODUCTS</a></li>
+                            </ul>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link active text-sm font-normal hover:font-bold" href="#">hello, {{user.username}} </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link active text-sm font-normal hover:font-bold" href="{% url 'logout' %}">LOGOUT</a>
+                          </li>
+                          {% else %}
+                          <li class="nav-item">
+                            <a class="nav-link active text-sm font-normal hover:font-bold" href="{% url 'login' %}">LOGIN</a>
+                          </li>
+                          {% endif %}
+                        </ul>
+                      </div>
+                    </div>
+                  </nav>
+                </div>
+              </div>
+          </div>
+      </div>
+      <!-- Navbar section End Authenticated-->
+
+        <!-- Slider section start -->
+        <div class="container mt-5">
+          <div class="row">
+            <div class="col-lg-12">
+              <!-- "freeScroll": true, "contain": true, "prevNextButtons": false, "pageDots": false  -->
+              <div class="carousel" data-flickity='{ "fullscreen": true, "autoPlay": true, "pauseAutoPlayOnHover": false, "pageDots": false, "wrapAround": true }'>
+                <!-- cards section start -->
+                <!-- card 1 start -->
+                <div class="card" style="width: 100%;">
+                  <div class="row">
+                    <div class="col-md-8 "> 
+                      <img src="{% static 'img\bikes\ybr.jpg' %}" class="card-img-top a3" alt="...">
+                    </div>
+                    <div class="col-md-4 a1 a2 ml-[-11px] sm:h-auto"> 
+                      <div class="card-body pt-3">
+                        <h5 class="card-title font-bold  text-3xl">Realme C15</h5>
+                        <p class="card-text ">Starting at <span class="text-3xl text-[#E81414]"> Rs12000 </span></p>
+                      </div>
+                      <div class="card-body">
+                        <ul>
+                          <li class="">location</li>
+                          <li>condition</li>
+                        </ul>
+                        <a href="#" class="card-link btn btn-outline-dark font-bold border-2">View More</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- card 1 end -->
+                <!-- card 2 start -->
+                <div class="card" style="width: 100%;">
+                  <div class="row">
+                    <div class="col-md-8 gap-0"> 
+                      <img src="{% static 'img\mobiles\vivo1.jpg' %}" class="card-img-top a3" alt="...">
+                    </div>
+                    <div class="col-md-4 a1 a2 ml-[-11px]"> 
+                      <div class="card-body pt-3">
+                        <h5 class="card-title font-bold  text-3xl">Realme C15</h5>
+                        <p class="card-text ">Starting at <span class="text-3xl text-[#E81414]"> Rs12000 </span></p>
+                      </div>
+                      <div class="card-body">
+                        <ul>
+                          <li class="">location</li>
+                          <li>condition</li>
+                        </ul>
+                        <a href="#" class="card-link btn btn-outline-dark font-bold border-2">View More</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- card 2 end -->
+                <!-- card 3 start -->
+                <div class="card" style="width: 100%;">
+                  <div class="row">
+                    <div class="col-md-8"> 
+                      <img src="{% static 'img\cars\toyotayaris.jpg' %}" class="card-img-top a3" alt="...">
+                    </div>
+                    <div class="col-md-4 a1 a2 ml-[-11px]"> 
+                      <div class="card-body pt-3">
+                        <h5 class="card-title font-bold  text-3xl">Realme C15</h5>
+                        <p class="card-text ">Starting at <span class="text-3xl text-[#E81414]"> Rs12000 </span></p>
+                      </div>
+                      <div class="card-body">
+                        <ul>
+                          <li class="">location</li>
+                          <li>condition</li>
+                        </ul>
+                        <a href="#" class="card-link btn btn-outline-dark font-bold border-2">View More</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- card 3 End -->
+                <!-- card 4 start -->
+                <div class="card" style="width: 100%;">
+                  <div class="row">
+                    <div class="col-md-8 "> 
+                      <img src="{% static 'img\mobiles\mobile1.jpg' %}" class="card-img-top a3" alt="...">
+                    </div>
+                    <div class="col-md-4 a1 a2 ml-[-11px]"> 
+                      <div class="card-body pt-3">
+                        <h5 class="card-title font-bold  text-3xl">Realme C15</h5>
+                        <p class="card-text ">Starting at <span class="text-3xl text-[#E81414]"> Rs12000 </span></p>
+                      </div>
+                      <div class="card-body">
+                        <ul>
+                          <li class="">location</li>
+                          <li>condition</li>
+                        </ul>
+                        <a href="#" class="card-link btn btn-outline-dark font-bold border-2">View More</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- card 4 end -->
+                <!-- cards section end -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Slider section End -->
+
+        <!-- hot deals section start -->
+        <div class="container mt-[300px] md:mt-[100px] ">
+          <div class="row">
+            <div class="col-12">
+              <span class="font-bold text-xl">Hot Deals Products</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12"><hr class="hr1"> <hr class="hr2"></div> 
+          </div>
+          <!-- hot deals slider section start -->
+          <div class="row">
+            <div class="col-12">
+              <div class="carousel z-40 " 
+                data-flickity='{ "draggable": true, "groupCells": true , "prevNextButtons": false, "pageDots": false, "wrapAround": true }'>
+                <!-- card1 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]">
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 1</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card1 End -->
+                <!-- card2 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]">
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 2</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card2 End -->
+                <!-- card3 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]">
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 3</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card3 End -->
+                <!-- card4 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]">
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 4</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card4 End -->
+                <!-- card5 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]">
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 5</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card5 End -->
+                <!-- card6 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]">
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 6</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card6 End -->
+              </div>
+            </div>
+          </div>
+          <!-- hot deals slider section end -->
+        </div>
+        <!-- hot deals section end -->
+
+        <!-- bikes section start -->
+        <div class="container mt-[-80px]">
+          <div class="row">
+            <div class="col-12">
+              <span class="font-bold text-xl">Bikes</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <hr class="hr3">
+            </div>
+          </div>
+          <!-- banner section start -->
+          <div class="row">
+            <div class="col-md-6 banner">
+              <a href="#"> <img class="banner-img" src="{% static 'img\banner\2_1.jpg' %}" alt="banner1"> </a>
+            </div>
+            <div class="col-md-6 banner">
+              <a href="#"> <img class="banner-img" src="{% static 'img\banner\2_2.jpg' %}" alt="banner2"> </a>
+            </div>
+          </div>
+          <!-- banner section end -->
+          <!-- bikes slider section start -->
+          <div class="row">
+            <div class="col-12">
+              <div class="carousel z-40 " 
+                data-flickity='{ "draggable": true, "groupCells": true , "prevNextButtons": false, "pageDots": false, "wrapAround": true }'>
+                <!-- card1 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]" >
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 1</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card1 End -->
+                <!-- card2 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]" >
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 2</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card2 End -->
+                <!-- card3 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]" >
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 3</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card3 End -->
+                <!-- card4 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]" >
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 4</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card4 End -->
+                <!-- card5 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]" >
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 5</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card5 End -->
+                <!-- card6 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]" >
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 6</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card6 End -->
+              </div>
+            </div>
+          </div>
+          <!-- bikes slider section end -->
+        </div>
+        <!-- bikes section end -->
+
+        <!-- Cars section start -->
+        <div class="container mt-[-80px]">
+          <div class="row">
+            <div class="col-12">
+              <span class="font-bold text-xl">Cars</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <hr class="hr3">
+            </div>
+          </div>
+          <!-- banner section start -->
+          <div class="row">
+            <div class="col-md-6 banner">
+              <a href="#"> <img class="banner-img" src="{% static 'img\banner\2_1.jpg' %}" alt="banner1"> </a>
+            </div>
+            <div class="col-md-6 banner">
+              <a href="#"> <img class="banner-img" src="{% static 'img\banner\2_2.jpg' %}" alt="banner2"> </a>
+            </div>
+          </div>
+          <!-- banner section end -->
+          <!-- cars slider section start -->
+          <div class="row">
+            <div class="col-12">
+              <div class="carousel z-40 " 
+                data-flickity='{ "draggable": true, "groupCells": true , "prevNextButtons": false, "pageDots": false, "wrapAround": true }'>
+                <!-- card1 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]" >
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 1</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card1 End -->
+                <!-- card2 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]">
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 2</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card2 End -->
+                <!-- card3 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]">
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 3</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card3 End -->
+                <!-- card4 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]">
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 4</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card4 End -->
+                <!-- card5 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]">
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 5</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card5 End -->
+                <!-- card6 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]">
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 6</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card6 End -->
+              </div>
+            </div>
+          </div>
+          <!-- cars slider section end -->
+        </div>
+        <!-- cars section end -->
+
+        <!-- laptops section start -->
+        <div class="container mt-[-80px]">
+          <div class="row">
+            <div class="col-12">
+              <span class="font-bold text-xl">Laptops</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <hr class="hr3">
+            </div>
+          </div>
+          <!-- banner section start -->
+          <div class="row">
+            <div class="col-md-6 banner">
+              <a href="#"> <img class="banner-img" src="{% static 'img\banner\2_1.jpg' %}" alt="banner1"> </a>
+            </div>
+            <div class="col-md-6 banner">
+              <a href="#"> <img class="banner-img" src="{% static 'img\banner\2_2.jpg' %}" alt="banner2"> </a>
+            </div>
+          </div>
+          <!-- banner section end -->
+          <!-- Laptops slider section start -->
+          <div class="row">
+            <div class="col-12">
+              <div class="carousel z-40 " 
+                data-flickity='{ "draggable": true, "groupCells": true , "prevNextButtons": false, "pageDots": false, "wrapAround": true }'>
+                <!-- card1 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]">
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 1</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card1 End -->
+                <!-- card2 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]">
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 2</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card2 End -->
+                <!-- card3 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]">
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 3</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card3 End -->
+                <!-- card4 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]">
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 4</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card4 End -->
+                <!-- card5 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]">
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 5</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card5 End -->
+                <!-- card6 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]">
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 6</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card6 End -->
+              </div>
+            </div>
+          </div>
+          <!-- Laptops slider section end -->
+        </div>
+        <!-- Laptops section end -->
+
+        <!-- Mobiles section start -->
+        <div class="container mt-[-80px]">
+          <div class="row">
+            <div class="col-12">
+              <span class="font-bold text-xl">Mobiles</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <hr class="hr3">
+            </div>
+          </div>
+          <!-- banner section start -->
+          <div class="row">
+            <div class="col-md-6 banner">
+              <a href="#"> <img class="banner-img" src="{% static 'img\banner\2_1.jpg' %}" alt="banner1"> </a>
+            </div>
+            <div class="col-md-6 banner">
+              <a href="#"> <img class="banner-img" src="{% static 'img\banner\2_2.jpg' %}" alt="banner2"> </a>
+            </div>
+          </div>
+          <!-- banner section end -->
+          <!-- Mobiles slider section start -->
+          <div class="row">
+            <div class="col-12">
+              <div class="carousel z-40 " 
+                data-flickity='{ "draggable": true, "groupCells": true , "prevNextButtons": false, "pageDots": false, "wrapAround": true }'>
+                <!-- card1 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]">
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 1</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card1 End -->
+                <!-- card2 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]">
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 2</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card2 End -->
+                <!-- card3 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]">
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 3</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card3 End -->
+                <!-- card4 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]">
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 4</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card4 End -->
+                <!-- card5 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]">
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 5</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card5 End -->
+                <!-- card6 start -->
+                <div class="carousel-cell">
+                  <div class="card card1 hover:drop-shadow-xl  w-[19rem] md:w-[14rem]">
+                    <img src="{% static 'img\bikes\Bikes.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title font-bold text-lg text-primary"><a href="#">YBR 125CC 6</a></h5>
+                      <p class="card-text my-2">RS 85000</p>
+                      <span> <a href="#" class="btn b1  font-bold text-sm">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- card6 End -->
+              </div>
+            </div>
+          </div>
+          <!-- Mobiles slider section end -->
+        </div>
+        <!-- Mobiles section end -->
+
+
+<!-- footer section start -->
+        <div class="footer">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8"> 
+                <div class="row">
+                  <div class="col-md-6 col-12 my-5"> 
+                    <h1 class="font-bold text-3xl"><a href="{% url 'home' %}"> MAKE IT EASY</a></MAKE></h1>
+                    <p class="f1" >We are a team of E-com store to sell products or serve humanity online</p>
+                    <p class="f1"><span class="font-bold">ADDRESS:</span> Faisalabad , Punjab Pakistan</p>
+                    <p class="f1"><span class="font-bold">PHONE:</span>  (+92) 3054424621</p>
+                    <p class="f1"><span class="font-bold">EMAIL:</span>  E-com@gmail.com</p>
+                  </div>
+                  <div class="col-md-3 col-6 my-5"> 
+                    <h1 class="font-bold text-xl">Product</h1>
+                    <p class="f2"><a href="{% url 'login' %}">BIKE</a></p>
+                    <p class="f2"><a href="{% url 'login' %}">CAR</a></p>
+                    <p class="f2"><a href="{% url 'login' %}">LAPTOP</a></p>
+                    <p class="f2"><a href="{% url 'login' %}">MOBILE</a></p>
+                  </div>
+                  <div class="col-md-3 col-6 my-5"> 
+                    <h1 class="font-bold text-xl">OUR COMPANY</h1>
+                    <p class="f2"><a href="{% url 'login' %}">AboutUS</a></p>
+                    <p class="f2"><a href="{% url 'login' %}">ContactUS</a></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 my-5">
+                <h1 class="font-bold text-xl">Follow US</h1>
+                <div class="row">
+                  <div class="col-12 icon-body">
+                    <div class="wraper">
+                      
+                      <div class="icon twitter">
+                        <div class="toltip">Twitter</div>
+                        <span><a href="https://twitter.com/i/flow/login"><i class="fab fa-twitter"></i></a></span>
+                      </div>
+  
+                      <div class="icon facebook">
+                        <div class="toltip">Facebook</div>
+                        <span><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></span>
+                      </div>
+                      
+                      <div class="icon instagram">
+                        <div class="toltip">Instagram</div>
+                        <span><a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a></span>
+                      </div>
+                      
+                      <div class="icon youtube">
+                        <div class="toltip">YouTube</div>
+                        <span><a href="https://www.youtube.com"><i class="fab fa-youtube"></i></a></span>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<!-- footer section End -->
+
+  
+
+
+<!-- top scroll button start -->
+
+
+  <div>
+    <a href="#" class="to-top">
+      <i class="fa-light fa-angles-up"></i>
+    </a>
+  </div>
+
+<!-- top scroll button End -->
+        
+
+        
+
+        <script src="{% static 'min.js' %}"></script>
+        <!-- flickity JavaScript -->
+        <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+        <!-- bootstrap js  -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    </body>
+</html>
+
+
+{% if user.is_authenticated %}
+<!-- Navbar section start Authenticated-->
+<div class="BG_nav my-2 h5">
+  <div class="container ">
+      <div class="row">
+        <div class="col-lg-12 ">
+          <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+              <a class="navbar-brand text-sm font-bold" href="{% url 'home' %}">MAKE IT EASY</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                <ul class="navbar-nav ">
+                  <li class="nav-item ">
+                    <a class="nav-link active text-sm font-normal hover:font-bold"  href="{% url 'home' %}">HOME</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active text-sm font-normal hover:font-bold" href="{% url 'contactus' %}">CONTACT US</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active text-sm font-normal hover:font-bold" href="{% url 'aboutus' %}">ABOUT US</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link active dropdown-toggle text-sm font-normal hover:font-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      CATAGORIES
+                    </a>
+                    <ul class="dropdown-menu BG_nav">
+                      <li><a class="dropdown-item text-sm font-normal hover:font-bold" href="#">BIKES</a></li>
+                      <li><a class="dropdown-item text-sm font-normal hover:font-bold" href="#">CARS</a></li>
+                      <li><a class="dropdown-item text-sm font-normal hover:font-bold" href="#">LAPTOPS</a></li>
+                      <li><a class="dropdown-item text-sm font-normal hover:font-bold" href="#">MOBILES</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link active dropdown-toggle text-sm font-normal hover:font-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      PRODUCTS
+                    </a>
+                    <ul class="dropdown-menu BG_nav">
+                      <li><a class="dropdown-item text-sm font-normal hover:font-bold" href="{% url 'add_product' %}">ADD PRODUCTS</a></li>
+                      <li><a class="dropdown-item text-sm font-normal hover:font-bold" href="{% url 'manage_product' %}">MANAGE PRODUCTS</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active text-sm font-normal hover:font-bold" href="#">hello, {{user.username}} </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active text-sm font-normal hover:font-bold" href="{% url 'logout' %}">LOGOUT</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+  </div>
+</div>
+<!-- Navbar section End Authenticated-->
+{% else %}
+<!-- Navbar section start not Authenticated-->
+<div class="BG_nav my-2 h5">
+    <div class="container ">
+        <div class="row">
+          <div class="col-lg-12 ">
+            <nav class="navbar navbar-expand-lg">
+              <div class="container-fluid">
+                <a class="navbar-brand text-sm font-bold" href="{% url 'home' %}">MAKE IT EASY</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                  <ul class="navbar-nav ">
+                    <li class="nav-item ">
+                      <a class="nav-link active text-sm font-normal hover:font-bold"  href="{% url 'home' %}">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active text-sm font-normal hover:font-bold" href="{% url 'login' %}">CONTACT US</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active text-sm font-normal hover:font-bold" href="{% url 'login' %}">ABOUT US</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link active dropdown-toggle text-sm font-normal hover:font-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        CATAGORIES
+                      </a>
+                      <ul class="dropdown-menu BG_nav">
+                        <li><a class="dropdown-item text-sm font-normal hover:font-bold" href="{% url 'login' %}">BIKES</a></li>
+                        <li><a class="dropdown-item text-sm font-normal hover:font-bold" href="{% url 'login' %}">CARS</a></li>
+                        <li><a class="dropdown-item text-sm font-normal hover:font-bold" href="{% url 'login' %}">LAPTOPS</a></li>
+                        <li><a class="dropdown-item text-sm font-normal hover:font-bold" href="{% url 'login' %}">MOBILES</a></li>
+                      </ul>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active text-sm font-normal hover:font-bold" href="{% url 'login' %}">LOGIN</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+    </div>
+</div>
+<!-- Navbar section End not Authenticated-->
+{% endif %}

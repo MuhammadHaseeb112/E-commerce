@@ -1,0 +1,150 @@
+{% extends 'test.html'%}
+
+{% load static %}
+{% static "images" as baseUrl %}
+
+{% block search %}
+{% endblock search %}
+
+{% block content %}
+
+
+	<div id="content-wrapper">
+		{% csrf_token %}
+
+		<div class="column">
+			<img id=featured class="view_img" src="{{bike.img.url}}">
+
+			<!-- <div id="slide-wrapper" >
+				<img id="slideLeft" class="arrow" src="{% static 'images/arrow-left.png' %}">
+
+				<div id="slider">
+					<img class="thumbnail active slider_img" src="{{bike.img.url}}">
+					<img class="thumbnail slider_img" src="{% static 'images/shoe2.jpg' %}">
+					<img class="thumbnail slider_img" src="{% static 'images/shoe3.jpg' %}">
+				</div>
+
+				<img id="slideRight" class="arrow" src="{% static 'images/arrow-right.png' %}">
+			</div> -->
+		</div>
+
+		<div class="column">
+			<h1>{{bike.name}} <span class="model">{{bike.model}}</span></h1>
+			
+			{% if bike.new == True %}
+			<span class="text-danger ">New</span>
+			{%else%}
+			<span class="model">Used</span>
+			{% endif %}
+			
+			<hr>
+			<h3 class="text-primary">Rs {{bike.price}}</h3>
+			<h4>DISCRIPRION</h4>
+			<p>{{bike.discription}}</p>
+			<hr>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-6">
+						<h5>Condition: {% if bike.new == True %}
+							<span >New</span>
+							{%else%}
+							<span >Used</span>
+							{% endif %}</h5>
+					</div>
+					
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<h5>Email:{{info.user_email}}</h5>
+					</div>
+				</div>
+				<div class="row">
+					
+					<div class="col-12">
+						<h5>Phone:{{info.user_contact}}</h5>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<h5>Address:{{info.user_address}}</h5>
+					</div>
+				</div>
+			</div>			
+			<!-- buy_now/{{bike.username}}&{{bike.id}}&{{bike.name}} -->
+			{% if user.is_authenticated %}
+			<a class="btn btn-dark" href="/buy_now/{{bike.id}}&{{bike.name}}&{{bike.username}}&{{user.username}}">Buy Now</a>
+			{% else %}
+			<a class="btn btn-dark" href="{% url 'login' %}">Buy Now</a>
+			{% endif %}
+		</div>
+
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-12">
+				{% for r in rate %}
+				<div class="row">
+					<div class="col-9">
+						
+						<h5><i class="fa-solid fa-user"></i> {{r.Buyer_name}}&nbsp;&nbsp;&nbsp;{{r.time}}</h5> 
+						<p>{{r.comment}}</p>	
+					</div>
+					<div class="col-3">
+						{% if r.rate > 0 %}<i class="fa fa-star"></i>{% else %}<i class="fa-thin fa-star"></i>{% endif %}
+						{% if r.rate > 1 %}<i class="fa fa-star"></i>{% else %}<i class="fa-thin fa-star"></i>{% endif %}
+						{% if r.rate > 2 %}<i class="fa fa-star"></i>{% else %}<i class="fa-thin fa-star"></i>{% endif %}
+						{% if r.rate > 3 %}<i class="fa fa-star"></i>{% else %}<i class="fa-thin fa-star"></i>{% endif %}
+						{% if r.rate > 4 %}<i class="fa fa-star"></i>{% else %}<i class="fa-thin fa-star"></i>{% endif %}
+					</div>
+				</div>
+				{%endfor%}
+			</div>
+			<div class="col-lg-6 col-md-12">
+				{% if review.Buyer_name == user.username %}
+				{% if comment == True %}
+				<form action="{% url 'submit' %}" method="post">
+					{% csrf_token %}
+					<input type="text" hidden name="buyer_id" id="" value="{{review.id}}">
+					<input type="text" hidden name="Buyer_name" id="" value="{{user.username}}">
+					<input type="text" hidden name="Product_catagory" id="" value="{{bike.catagory}}">
+					<input type="text" hidden name="product_id" id="" value="{{bike.id}}">
+					<div>
+						<input type="radio" name="rate" id="star1" value="1">
+						<label class="" for="star1"><i class="fa-thin fa-star"></i></label>
+						<input type="radio" name="rate" id="star2" value="2">
+						<label class="" for="star2"><i class="fa-thin fa-star"></i></label>
+						<input type="radio" name="rate" id="star3" value="3">
+						<label class="" for="star3"><i class="fa-thin fa-star"></i></label>
+						<input type="radio" name="rate" id="star4" value="4">
+						<label class="" for="star4"><i class="fa-thin fa-star"></i></label>
+						<input type="radio" name="rate" id="star5" value="5">
+						<label class="" for="star5"><i class="fa-thin fa-star star"></i></label>
+					</div>
+					<div>
+						<textarea id="txtid" name="comment" rows="4" cols="50" maxlength="250">
+						</textarea>
+					</div>
+					<div>
+						<button>Submit</button>
+					</div>
+				</form>
+				{% endif %}
+				{% endif %}
+			</div>
+		</div>
+	</div>
+
+
+	<!-- {% if review.Buyer_name == user.username %}
+			<span class="text-danger ">New  {{review.Buyer_name}} {{user.username}}
+				
+				
+			</span>
+			{%else%}
+			<span class="model">Used</span>
+			{% endif %}
+ -->
+{% endblock content %}
+
+

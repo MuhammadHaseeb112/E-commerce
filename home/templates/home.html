@@ -1,0 +1,250 @@
+{% extends 'test.html'%}
+{% load static %}
+{% static "images" as baseUrl %}
+
+
+
+
+
+<!-- <div class="container-fluid">
+  {% if messages %}
+  {% for message in messages %}
+  <h3 class="error_messages"> {{message}} </h3>
+  {% endfor %}
+  {% endif %}
+</div> -->
+<!-- Messages section End -->
+
+
+
+
+
+
+
+
+{% block content %}
+
+
+
+
+        <!-- bikes section start -->
+        <div class="container mt-[-80px]">
+          <div class="row">
+            <div class="col-12">
+              <span class="hd_title">Bikes</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <hr class="hr3">
+            </div>
+          </div>
+          <!-- banner section start -->
+          <div class="row">
+            <div class="col-md-6 banner">
+              <a href="#"> <img class="banner-img" src="{% static 'img\banner\2_1.jpg' %}" alt="banner1"> </a>
+            </div>
+            <div class="col-md-6 banner">
+              <a href="#"> <img class="banner-img" src="{% static 'img\banner\2_2.jpg' %}" alt="banner2"> </a>
+            </div>
+          </div>
+          <!-- banner section end -->
+          <!-- bikes slider section start -->
+          <div class="row">
+            <div class="col-12">
+              <div class="carousel z-40 " 
+                data-flickity='{ "draggable": true, "groupCells": true , "prevNextButtons": false, "pageDots": false, "wrapAround": true }'>
+                <!-- card1 start -->
+                {% for dest in dests %}
+                <div class="carousel-cell">
+                  <a href="view_product/{{dest.id}}&{{dest.catagory}}">
+                    <div class="card card1" >
+                      <img src={{dest.img}} class="card-img-top p-3 card2" alt="...">
+                      <!-- <img src="{% static '\img\bikes\125.jpg' %}" class="card-img-top p-3 card2" alt="..."> -->
+                      <div class="card-body">
+                        <h5 class="card-title hd_card_title text-primary"><a href="#">{{dest.name}}</a></h5>
+                        <p class="card-text my-2">RS{{dest.price}}</p>
+                        <span> <a href="view_product/{{dest.id}}&{{dest.catagory}}" class="btn b1  hd_card_button">View More</a> </span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                {% endfor %}
+                <!-- card1 End -->
+                <!-- view more card start-->
+                <div class="carousel-cell">
+                  <div class="card card1" >
+                    <img src="{% static 'img\bikes\ybr2.jpg' %}" class="card-img-top p-3 card2" alt="...">
+                    <!-- <img src="{% static '\img\bikes\125.jpg' %}" class="card-img-top p-3 card2" alt="..."> -->
+                    <div class="card-body">
+                      <h5 class="card-title hd_card_title text-primary"><a href="#">{{dest.name}}</a></h5>
+                      <p class="card-text my-2">RS{{dest.price}}</p>
+                      <span> <a href="#" class="btn b1  hd_card_button">View More</a> </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- view more card End-->
+              </div>
+            </div>
+          </div>
+          <!-- bikes slider section end -->
+        </div>
+        <!-- bikes section end -->
+
+        <!-- Cars section start -->
+        <div class="container mt-[-80px]">
+          <div class="row">
+            <div class="col-12">
+              <span class="hd_title">Cars</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <hr class="hr3">
+            </div>
+          </div>
+          <!-- banner section start -->
+          <div class="row">
+            <div class="col-md-6 banner">
+              <a href="#"> <img class="banner-img" src="{% static 'img\banner\2_1.jpg' %}" alt="banner1"> </a>
+            </div>
+            <div class="col-md-6 banner">
+              <a href="#"> <img class="banner-img" src="{% static 'img\banner\2_2.jpg' %}" alt="banner2"> </a>
+            </div>
+          </div>
+          <!-- banner section end -->
+          <!-- cars slider section start -->
+          <div class="row">
+            <div class="col-12">
+              <div class="carousel z-40 " 
+                data-flickity='{ "draggable": true, "groupCells": true , "prevNextButtons": false, "pageDots": false, "wrapAround": true }'>
+                <!-- card1 start -->
+                {% for c in car %}
+                <div class="carousel-cell">
+                  <a href="view_product/{{c.id}}&{{c.catagory}}">
+                  <div class="card card1" >
+                    <img src="{{c.img.url}}" class="card-img-top p-3 card2" alt="...">
+                    <!-- <img src="{% static '\img\cars\city2018.jpg' %}" class="card-img-top p-3 card2" alt="..."> -->
+                    <div class="card-body">
+                      <h5 class="card-title hd_card_title text-primary"><a href="#">{{c.name}}</a></h5>
+                      <p class="card-text my-2">RS{{c.price}}</p>
+                      <span> <a href="view_product/{{c.id}}&{{c.catagory}}" class="btn b1 hd_card_button">View More</a></span>
+                    </div>
+                  </div>
+                  </a>
+                </div>
+                {% endfor %}
+                <!-- card1 End -->
+                
+              </div>
+            </div>
+          </div>
+          <!-- cars slider section end -->
+        </div>
+        <!-- cars section end -->
+
+        <!-- laptops section start -->
+        <div class="container mt-[-80px]">
+          <div class="row">
+            <div class="col-12">
+              <span class="hd_title">Laptops</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <hr class="hr3">
+            </div>
+          </div>
+          <!-- banner section start -->
+          <div class="row">
+            <div class="col-md-6 banner">
+              <a href="#"> <img class="banner-img" src="{% static 'img\banner\2_1.jpg' %}" alt="banner1"> </a>
+            </div>
+            <div class="col-md-6 banner">
+              <a href="#"> <img class="banner-img" src="{% static 'img\banner\2_2.jpg' %}" alt="banner2"> </a>
+            </div>
+          </div>
+          <!-- banner section end -->
+          <!-- Laptops slider section start -->
+          <div class="row">
+            <div class="col-12">
+              <div class="carousel z-40 " 
+                data-flickity='{ "draggable": true, "groupCells": true , "prevNextButtons": false, "pageDots": false, "wrapAround": true }'>
+                <!-- card1 start -->
+                {% for lap in laptop %}
+                <div class="carousel-cell">
+                  <a href="view_product/{{lap.id}}&{{lap.catagory}}">
+                  <div class="card card1">
+                    <img src="{{lap.img.url}}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title hd_card_title text-primary"><a href="#">{{lap.name}}</a></h5>
+                      <p class="card-text my-2">RS {{lap.price}}</p>
+                      <span> <a href="view_product/{{lap.id}}&{{lap.catagory}}" class="btn b1 hd_card_button">View More</a> </span>
+                    </div>
+                  </div>
+                  </a>
+                </div>
+                {% endfor %}
+                <!-- card1 End -->
+              </div>
+            </div>
+          </div>
+          <!-- Laptops slider section end -->
+        </div>
+        <!-- Laptops section end -->
+
+        <!-- Mobiles section start -->
+        <div class="container mt-[-80px]">
+          <div class="row">
+            <div class="col-12">
+              <span class="hd_title">Mobiles</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <hr class="hr3">
+            </div>
+          </div>
+          <!-- banner section start -->
+          <div class="row">
+            <div class="col-md-6 banner">
+              <a href="#"> <img class="banner-img" src="{% static 'img\banner\2_1.jpg' %}" alt="banner1"> </a>
+            </div>
+            <div class="col-md-6 banner">
+              <a href="#"> <img class="banner-img" src="{% static 'img\banner\2_2.jpg' %}" alt="banner2"> </a>
+            </div>
+          </div>
+          <!-- banner section end -->
+          <!-- Mobiles slider section start -->
+          <div class="row">
+            <div class="col-12">
+              <div class="carousel z-40 " 
+                data-flickity='{ "draggable": true, "groupCells": true , "prevNextButtons": false, "pageDots": false, "wrapAround": true }'>
+                <!-- card1 start -->
+                {% for mob in mobile %}
+                <div class="carousel-cell">
+                  <a href="view_product/{{mob.id}}&{{mob.catagory}}">
+                  <div class="card card1">
+                    <img src="{{mob.img.url}}" class="card-img-top p-3 card2" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title hd_card_title text-primary"><a href="#">{{mob.name}}</a></h5>
+                      <p class="card-text my-2">RS {{mob.price}}</p>
+                      <span> <a href="view_product/{{mob.id}}&{{mob.catagory}}" class="btn b1 hd_card_button">View More</a> </span>
+                    </div>
+                  </div>
+                  </a>
+                </div>
+                {% endfor %}
+                <!-- card1 End -->
+                
+              </div>
+            </div>
+          </div>
+          <!-- Mobiles slider section end -->
+        </div>
+        <!-- Mobiles section end -->
+
+
+        {% endblock content %}
+
+

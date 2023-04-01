@@ -1,0 +1,60 @@
+{% extends 'test.html'%}
+{% load static %}
+{% static "images" as baseUrl %}
+
+{% block search %}
+{% endblock search %}
+
+{% block content %}
+
+<!-- manage section start  -->
+<div class="container">
+    <div class="row mt-5 justify-content-between ">
+        <div class="container">
+            <h1 class="h1 center_text">Manage Users</h1>
+        </div>
+        <div class="col-12 my-3 mx-auto">
+            <form action="#">
+                <input type="text" class="NB search_bar border-2 p-2" placeholder="search here">
+                <button class="BG w-[50px] border-2 ml-[-6px] p-2"  type="submit"><i class="fa fa-search"></i></button>
+                <a href="{% url 'admin_products' %}" class="btn action_btn">Manage Products</a>
+                
+            </form>
+        </div>
+    </div>
+  <div >
+    <hr>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">User Name</th>
+            <th scope="col">Super User</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+          
+          <tr>
+            <th scope="row">{{ user.id }}</th>
+            <td>{{ user.first_name }} {{ user.last_name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.is_superuser }}</td>
+            <td>
+              <a href="delete_user/{{ user.id }}&{{ user.username }}"><button class="btn action_btn">Remove Seller</button></a>
+            </td>
+          </tr>
+          
+          {% endfor %}
+        </tbody>
+      </table>
+  </div>
+</div>
+<!-- manage section End  -->
+
+
+{% endblock content %}

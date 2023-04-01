@@ -1,0 +1,36 @@
+{% extends 'test.html'%}
+
+{% load static %}
+{% static "images" as baseUrl %}
+
+{% block search %}
+{% endblock search %}
+
+{% block content %}
+
+
+
+
+<div class="container">
+<h1>this is notification page</h1>
+{% for s in seller %}
+<P>
+    
+    <form action="/update/{{ s.id }}&varified" method="post"">
+        {% csrf_token %}
+        Hi <b>{{s.seller_name}}!</b> <br>
+    <b>{{s.Buyer_name}}</b> wanted to purchase <b>{{s.Product_name}}</b> From You. {% if s.varification == False %} <button class="btn btn-outline-dark">Accepted</button> {% endif %}
+    
+        
+        <input type="text" name="Buyer_name" value="{{s.Buyer_name}}" hidden>
+        <input type="text" name="seller_name" value="{{s.seller_name}}" hidden>
+        <input type="text" name="Product_name" value="{{s.Product_name}}" hidden>
+        <input type="text" name="product_id" value="{{s.product_id}}" hidden>
+        <input type="text" name="varification" value="True" hidden>
+    </form>
+</P>
+{% endfor %}
+
+</div>
+
+{% endblock content %}
